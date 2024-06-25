@@ -7,7 +7,7 @@ use Exception;
 class User extends Model {
     public $fields = [
         'create' => ['name', 'email', 'password', 'dob'],
-        'update' => ['password', 'token', 'date', 'passwordChangedAt'],
+        'update' => ['name', 'dob'],
         'gets' => ['id', 'name', 'email'],
         'get' => ['id', 'name', 'email','password', 'dob']
     ];

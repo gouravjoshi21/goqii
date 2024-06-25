@@ -10,25 +10,26 @@ $UserObj = new User ($db->connection);
 $Purifier->model = require base_path('model/user.php');
 
 /********************************************************/
-$arr = ['name', 'email', 'password', 'dob'];
+$arr = ['id', 'name', 'dob'];
 
 $filteredData = $Purifier->processArr($arr);
 
-/* Check Email id already exists or not */
 $UserObj->postData = $filteredData;
 
-if (!empty($UserObj->getBy('email'))) { response (['code' => 400, 'msg' => 'Email id is already in use!']); die();}
+if (empty($UserObj->getBy())) {
+    response (['code' => 301, 'msg' => "User not found!"]);
+    die();
+}
 
-/* Create Account */
-$id = $UserObj->create();
+if ($UserObj->update()) {
+    response ([
+        'msg' => 'User Updated Successfully!'
+    ]);
+    
+    die();
+}
+    
 
-if (empty($id)) throw new Exception ("Something went wrong! Please try again.");
-
-response ([ 'msg' => 'User Created successfully!', 'data' => array(
-    "id" => $id,
-    "name" => $filteredData['name'],
-    "email" => $filteredData['email'],
-    "dob" => $filteredData['dob'],
-)]);
-
+/********************************************************/
+response (['code' => 500, 'msg' => "Something went wrong!"]);
 die();

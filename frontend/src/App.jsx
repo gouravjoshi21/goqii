@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
+import GlobalStyles from "./styles/Global";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
+
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 60 * 60 * 1000,
+        },
+    },
+});
 
 function App() {
-  const [count, setCount] = useState(0)
+    return (
+        <QueryClientProvider client={queryClient}>
+            <GlobalStyles />
+            <RouterProvider router={router} />
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+            <Toaster
+                position="bottom-center"
+                gutter={12}
+                containerStyle={{ margin: "8px" }}
+                toastOptions={{
+                    success: {
+                        duration: 1500,
+                    },
+                    error: {
+                        duration: 2000,
+                    },
+                    style: {
+                        fontSize: "14px",
+                        maxWidth: "500px",
+                        padding: "16px 24px",
+                        backgroundColor: "var(--color-bg-3)",
+                        color: "var(--color-text-2)",
+                    },
+                }}
+            />
+        </QueryClientProvider>
+    );
 }
 
-export default App
+export default App;

@@ -18,3 +18,13 @@ export async function add(data) {
 
     return res.data;
 }
+
+export async function update(data) {
+    let res = await Model({
+        request: "PATCH",
+        api: `/user`,
+        data,
+    });
+
+    return res.data;
+}

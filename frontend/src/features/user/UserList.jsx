@@ -14,7 +14,7 @@ const Empty = styled.p`
 
 function UserList() {
     const { users, isLoading, error } = useUsers();
-    const isEmpty = users.length ? false : true;
+    const isEmpty = !isLoading && users.length ? false : true;
 
     return (
         <List>

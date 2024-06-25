@@ -3,6 +3,10 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import Menus from "../../components/Menus";
 import { formatDate, ucfirst } from "../../services/helpers";
+import Modal from "../../components/Modal";
+import AddUserForm from "./AddUserForm";
+import Confirm from "../../components/Confirm";
+import EditUserForm from "./EditUserform";
 
 const Item = styled.div`
     padding: 24px;
@@ -30,7 +34,8 @@ const Email = styled.div`
     font-size: 14px;
 `;
 
-function UserItem({ data: { id, name, email, dob } }) {
+function UserItem({ data }) {
+    const { id, name, email, dob } = data;
     return (
         <Item>
             <Header>
@@ -38,18 +43,42 @@ function UserItem({ data: { id, name, email, dob } }) {
                 <Email>{ucfirst(email)}</Email>
             </Header>
             <Options>
-                <Menus>
-                    <Menus.Menu>
-                        <Menus.Toggle id={id} />
+                <Modal>
+                    <Menus>
+                        <Menus.Menu>
+                            <Menus.Toggle id={id} />
 
-                        <Menus.List id={id}>
-                            <Menus.Button icon={<FiEdit2 />}>Edit</Menus.Button>
-                            <Menus.Button icon={<AiOutlineDelete />}>
-                                Delete
-                            </Menus.Button>
-                        </Menus.List>
-                    </Menus.Menu>
-                </Menus>
+                            <Menus.List id={id}>
+                                <Modal.Open opens="edit-user">
+                                    <Menus.Button icon={<FiEdit2 />}>
+                                        Edit
+                                    </Menus.Button>
+                                </Modal.Open>
+                                <Modal.Open opens="remove-user">
+                                    <Menus.Button icon={<AiOutlineDelete />}>
+                                        Delete
+                                    </Menus.Button>
+                                </Modal.Open>
+                            </Menus.List>
+                        </Menus.Menu>
+
+                        <Modal.Window type="popup" name="edit-user">
+                            <EditUserForm data={data} />
+                        </Modal.Window>
+
+                        <Modal.Window type="popup" name="remove-user">
+                            <Confirm
+                                title="Remove"
+                                type="danger"
+                                label="Remove"
+                                disabled={false}
+                                onConfirm={() => {}}
+                            >
+                                Do you want to remove this user?
+                            </Confirm>
+                        </Modal.Window>
+                    </Menus>
+                </Modal>
             </Options>
             <Footer>
                 <p>

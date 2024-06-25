@@ -105,7 +105,9 @@ function AddUserForm({ onCloseModal }) {
                     </Form.Row>
                 </Form.Wrapper>
                 <Form.Buttons>
-                    <Button disabled={isLoading}>Save</Button>
+                    <Button disabled={isLoading}>
+                        {isLoading ? "Saving...." : "Save"}
+                    </Button>
                 </Form.Buttons>
             </Form>
         </Parent>

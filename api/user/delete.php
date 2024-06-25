@@ -1,7 +1,7 @@
 <?php
 require base_path('api/index.php');
 
-// $Purifier->model = require base_path('model/user.php');
+$Purifier->model = require base_path('model/user.php');
 
 use \Core\User;
 
@@ -10,6 +10,9 @@ $UserObj = new User ($db->connection);
 $Purifier->model = require base_path('model/user.php');
 
 /********************************************************/
+$id = $_GET['id'] ?? '';
+$Purifier->data = json_decode(json_encode(['id' => $id]));
+
 $arr = ['id'];
 
 $filteredData = $Purifier->processArr($arr);

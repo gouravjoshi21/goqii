@@ -8,6 +8,7 @@ class User extends Model {
     public $fields = [
         'create' => ['name', 'email', 'password', 'dob'],
         'update' => ['name', 'dob'],
+        'delete' => ['id'],
         'gets' => ['id', 'name', 'email'],
         'get' => ['id', 'name', 'email','password', 'dob']
     ];

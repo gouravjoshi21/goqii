@@ -66,6 +66,18 @@ class Model {
         return true;
     }
 
+    public function delete () {
+        $this->field = 'delete';
+
+        $query = "DELETE from {$this->tbName} WHERE id = :id";
+        
+        array_push($this->fields[$this->field], 'id');
+
+        $this->query($query);
+
+        return true;
+    }
+
     public function getAll () {
         $query = "SELECT {$this->theseFields('gets')} FROM {$this->tbName} {$this->orderBy()}";
 

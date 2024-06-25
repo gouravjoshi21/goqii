@@ -13,8 +13,8 @@ $getData = json_decode(json_encode($getArr));
 $bodyData = json_decode(file_get_contents("php://input"));
 
 
-// $db = App::resolve('Core\Database');
+$db = App::resolve('Core\Database');
 
-// $Purifier = new Purifier($bodyData);
+$Purifier = new Purifier($bodyData);
 
 $AuthObj = $GLOBALS['AuthObj'];

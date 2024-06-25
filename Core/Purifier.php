@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 
+use DateTime;
 use Exception;
 
 class Purifier {

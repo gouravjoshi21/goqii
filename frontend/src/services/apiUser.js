@@ -28,3 +28,12 @@ export async function update(data) {
 
     return res.data;
 }
+
+export async function deleteUser({ id }) {
+    let res = await Model({
+        request: "DELETE",
+        api: `/user?id=${id}`,
+    });
+
+    return res.data;
+}

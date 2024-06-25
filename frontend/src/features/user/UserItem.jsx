@@ -7,6 +7,8 @@ import Modal from "../../components/Modal";
 import AddUserForm from "./AddUserForm";
 import Confirm from "../../components/Confirm";
 import EditUserForm from "./EditUserform";
+import { useDeleteUser } from "./useDeleteUser";
+import Mixins from "../../styles/Mixins";
 
 const Item = styled.div`
     padding: 24px;
@@ -29,6 +31,10 @@ const Options = styled.div``;
 const Name = styled.div`
     font-size: 24px;
     color: var(--color-text-1);
+
+    ${Mixins.mediumTab`
+        font-size: 18px;
+    `};
 `;
 const Email = styled.div`
     font-size: 14px;
@@ -36,10 +42,18 @@ const Email = styled.div`
 
 function UserItem({ data }) {
     const { id, name, email, dob } = data;
+    const { deleteUser, isLoading } = useDeleteUser();
+
+    function handleDelete() {
+        deleteUser({ id });
+    }
+
     return (
         <Item>
             <Header>
-                <Name>{ucfirst(name)}</Name>
+                <Name>
+                    <b>{ucfirst(name)}</b>
+                </Name>
                 <Email>{ucfirst(email)}</Email>
             </Header>
             <Options>
@@ -71,10 +85,10 @@ function UserItem({ data }) {
                                 title="Remove"
                                 type="danger"
                                 label="Remove"
-                                disabled={false}
-                                onConfirm={() => {}}
+                                disabled={isLoading}
+                                onConfirm={handleDelete}
                             >
-                                Do you want to remove this user?
+                                Do you want to remove {ucfirst(name)}'s account?
                             </Confirm>
                         </Modal.Window>
                     </Menus>

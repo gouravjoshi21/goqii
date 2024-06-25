@@ -4,6 +4,8 @@ import Button from "../components/Button";
 import UserList from "../features/user/UserList";
 import Modal from "../components/Modal";
 import AddUserForm from "../features/user/AddUserForm";
+import Head from "../ui/Head";
+import Mixins from "../styles/Mixins";
 
 const Parent = styled.div`
     padding: 64px 16px;
@@ -12,6 +14,10 @@ const Parent = styled.div`
         max-width: 1200px;
         margin: 0 auto;
     }
+
+    ${Mixins.tabPort`
+        padding: 32px 16px;
+    `}
 `;
 
 const Header = styled.div`
@@ -24,6 +30,13 @@ const Header = styled.div`
 function Home() {
     return (
         <Parent>
+            <Head
+                data={{
+                    title: "Users Listing",
+                    description:
+                        "Here you can create, update, edit, delete a user which is made by Gourav Joshi",
+                }}
+            />
             <Header>
                 <Heading>Users</Heading>
                 <Modal>

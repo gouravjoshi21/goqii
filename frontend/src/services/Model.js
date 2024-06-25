@@ -4,7 +4,7 @@ async function Model({ request, url = null, api = null, data = {} }) {
     try {
         let response;
         let headers = {};
-        let serverApi = "http://goqii.local/api/v1";
+        let serverApi = "/api/v1";
         let fullUrl = api ? `${serverApi}${api}` : url;
 
         switch (request) {

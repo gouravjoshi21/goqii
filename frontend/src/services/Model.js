@@ -4,7 +4,7 @@ async function Model({ request, url = null, api = null, data = {} }) {
     try {
         let response;
         let headers = {};
-        let serverApi = "/api";
+        let serverApi = "http://goqii.local/api/v1";
         let fullUrl = api ? `${serverApi}${api}` : url;
 
         switch (request) {
@@ -29,7 +29,7 @@ async function Model({ request, url = null, api = null, data = {} }) {
 
         const res = response.data;
 
-        if (res.status !== true)
+        if (res.status !== "success")
             throw new Error(res.message ?? "Something went wrong!");
 
         return res;

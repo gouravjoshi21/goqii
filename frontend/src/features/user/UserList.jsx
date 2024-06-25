@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import UserItem from "./UserItem";
+import { useUsers } from "./useUsers";
 
 const List = styled.ul`
     display: grid;
@@ -12,12 +13,16 @@ const Empty = styled.p`
 `;
 
 function UserList() {
+    const { users, isLoading, error } = useUsers();
+    const isEmpty = users.length ? false : true;
+
     return (
         <List>
-            <Empty>No User Found 😔</Empty>
-            <UserItem />
-            <UserItem />
-            <UserItem />
+            {isLoading && <Empty>Loading...</Empty>}
+            {!isLoading && isEmpty && <Empty>No users found 😔!</Empty>}
+            {!isLoading &&
+                !isEmpty &&
+                users.map((user) => <UserItem data={user} key={user.id} />)}
         </List>
     );
 }

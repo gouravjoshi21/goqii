@@ -9,7 +9,7 @@ class User extends Model {
         'create' => ['name', 'email', 'password', 'dob'],
         'update' => ['name', 'dob'],
         'delete' => ['id'],
-        'gets' => ['id', 'name', 'email'],
+        'gets' => ['id', 'name', 'email', 'dob'],
         'get' => ['id', 'name', 'email','password', 'dob']
     ];
 

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import Menus from "../../components/Menus";
+import { formatDate, ucfirst } from "../../services/helpers";
 
 const Item = styled.div`
     padding: 24px;
@@ -29,19 +30,19 @@ const Email = styled.div`
     font-size: 14px;
 `;
 
-function UserItem() {
+function UserItem({ data: { id, name, email, dob } }) {
     return (
         <Item>
             <Header>
-                <Name>Gourav</Name>
-                <Email>GouravJoshi953@gmail.com</Email>
+                <Name>{ucfirst(name)}</Name>
+                <Email>{ucfirst(email)}</Email>
             </Header>
             <Options>
                 <Menus>
                     <Menus.Menu>
-                        <Menus.Toggle id={1} />
+                        <Menus.Toggle id={id} />
 
-                        <Menus.List id={1}>
+                        <Menus.List id={id}>
                             <Menus.Button icon={<FiEdit2 />}>Edit</Menus.Button>
                             <Menus.Button icon={<AiOutlineDelete />}>
                                 Delete
@@ -52,7 +53,7 @@ function UserItem() {
             </Options>
             <Footer>
                 <p>
-                    Date of birth: <b>10 Oct 2024</b>
+                    Date of birth: <b>{formatDate(dob)}</b>
                 </p>
             </Footer>
         </Item>

@@ -3,6 +3,7 @@ import router from "./router";
 import GlobalStyles from "./styles/Global";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -17,6 +18,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <GlobalStyles />
             <RouterProvider router={router} />
+            <ReactQueryDevtools initialIsOpen={false} />
 
             <Toaster
                 position="bottom-center"

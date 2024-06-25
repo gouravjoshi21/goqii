@@ -1,6 +1,10 @@
 <?php
 const BASE_PATH = __DIR__ . '/../';
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, PATCH, DELETE");
+header("Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin");
+
 require BASE_PATH . "functions.php";
 require_once base_path('config.php');
 

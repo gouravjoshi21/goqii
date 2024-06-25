@@ -2,9 +2,9 @@
 class Config {
     private $Env = [
         // DATABASE VARIABLES
-        'HOSTNAME'=>'localhost',
-        'DB_NAME'=>'php_goqii',
-        'USERNAME'=>'root',
+        'HOSTNAME'=>'',
+        'DB_NAME'=>'',
+        'USERNAME'=>'',
         'PASSWORD'=>'',
 
         // JWT CONFIG

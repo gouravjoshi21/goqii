@@ -1,5 +1,5 @@
-import Mixins from "@/Styles/Mixins";
 import styled, { css } from "styled-components";
+import Mixins from "../styles/Mixins";
 
 const varients = [
     css`

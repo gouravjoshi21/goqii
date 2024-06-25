@@ -6,6 +6,7 @@ import Modal from "../components/Modal";
 import AddUserForm from "../features/user/AddUserForm";
 import Head from "../ui/Head";
 import Mixins from "../styles/Mixins";
+import Blob from "../ui/Blob";
 
 const Parent = styled.div`
     padding: 64px 16px;
@@ -30,6 +31,7 @@ const Header = styled.div`
 function Home() {
     return (
         <Parent>
+            <Blob top="0" left="0" />
             <Head
                 data={{
                     title: "Users Listing",
